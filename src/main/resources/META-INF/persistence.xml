@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
+             version="3.0">
+    <persistence-unit name="default">
+        <class>entities.AerospaceCompany</class>
+        <class>entities.Astronaut</class>
+        <class>entities.Employee</class>
+        <class>entities.Launch</class>
+        <class>entities.LaunchComplex</class>
+        <class>entities.Person</class>
+        <class>entities.Rocket</class>
+        <class>entities.SpaceCenter</class>
+        <class>entities.Test</class>
+        <class>entities.VehicleAssemblyBuilding</class>
+        <properties>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://slon.felk.cvut.cz:5432/vorongri"/>
+            <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+            <property name="jakarta.persistence.jdbc.user" value="vorongri"/>
+            <property name="jakarta.persistence.jdbc.password" value="Lqn5kv2K5Wj6ZYmoPJuz"/>
+        </properties>
+    </persistence-unit>
+</persistence>
