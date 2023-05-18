@@ -4,12 +4,15 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "test", schema = "cp3", catalog = "vorongri")
+@IdClass(TestKey.class)
 public class Test {
+    @Id
     @OneToOne
-//    @PrimaryKeyJoinColumn(name = "rocket")
+    @JoinColumn(name = "rocket")
     private Rocket rocket;
-    @OneToOne(mappedBy = "entities/AerospaceCompany.java")
-//    @PrimaryKeyJoinColumn(name = "company")
+    @Id
+    @OneToOne
+    @JoinColumn(name = "company")
     private AerospaceCompany company;
     @Basic
     @Column(name = "description")

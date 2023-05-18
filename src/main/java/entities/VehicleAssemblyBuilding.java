@@ -4,36 +4,37 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "vehicle_assembly_building", schema = "cp3", catalog = "vorongri")
-@IdClass(VehicleAssemblyBuildingKey.class)
+//@IdClass(VehicleAssemblyBuildingKey.class)
 public class VehicleAssemblyBuilding {
-    @Id
+    /*@Id
     @ManyToOne
-    @Column(name = "center")
+    @JoinColumn(name = "center")
     private SpaceCenter center;
     @Id
     @Column(name = "number")
-    private int number;
+    private int number;*/
+    @EmbeddedId
+    private VehicleAssemblyBuildingKey key;
 
     protected VehicleAssemblyBuilding() {}
     public VehicleAssemblyBuilding(VehicleAssemblyBuildingKey key) {
-        center = key.getCenter();
-        number = key.getNumber();
+        this.key = key;
     }
 
-    public SpaceCenter getCenter() {
-        return center;
+    public String getCenterName() {
+        return key.getCenterName();
     }
 
-    public void setCenter(SpaceCenter center) {
-        this.center = center;
+    public void setCenter(String center) {
+        this.key.setCenterName(center);
     }
 
     public int getNumber() {
-        return number;
+        return key.getNumber();
     }
 
     public void setNumber(int number) {
-        this.number = number;
+        this.key.setNumber(number);
     }
 
     @Override
@@ -43,16 +44,16 @@ public class VehicleAssemblyBuilding {
 
         VehicleAssemblyBuilding that = (VehicleAssemblyBuilding) o;
 
-        if (center != that.center) return false;
-        if (number != that.number) return false;
+        if (!key.getCenterName().equals(that.getCenterName())) return false;
+        if (key.getNumber() != that.getNumber()) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = center.hashCode();
-        result = 31 * result + number;
+        int result = key.getCenterName().hashCode();
+        result = 31 * result + key.getNumber();
         return result;
     }
 }

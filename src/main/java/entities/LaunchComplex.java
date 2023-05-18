@@ -8,7 +8,7 @@ import jakarta.persistence.*;
 public class LaunchComplex {
     @Id
     @ManyToOne
-    @Column(name = "center")
+    @JoinColumn(name = "center")
     private SpaceCenter center;
     @Id
     @Column(name = "number")

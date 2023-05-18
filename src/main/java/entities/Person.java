@@ -4,17 +4,18 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 
+@Entity
 @Table(name = "person", schema = "cp3", catalog = "vorongri")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public class Person implements Serializable {
+public class Person {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     @Column(name = "person_id")
     private int personId;
     @Basic(optional = false)
-    private String name;
-    @Basic(optional = false)
     private String email;
+    @Basic(optional = false)
+    private String name;
 
     public Person(String name, String email) {
         this.name = name;

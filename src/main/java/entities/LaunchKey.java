@@ -1,22 +1,22 @@
 package entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Time;
 
 public class LaunchKey implements Serializable {
-    @Column(name = "astronaut")
+    @JoinColumn(name = "astronaut")
+    @ManyToOne
     @Id
     private Astronaut astronaut;
-    @Column(name = "company")
+    @JoinColumn(name = "company")
+    @ManyToOne
     @Id
     private AerospaceCompany company;
-    @Column(name = "rocket")
+    @JoinColumn(name = "rocket")
+    @ManyToOne
     @Id
     private Rocket rocket;
     @Column(name = "date")

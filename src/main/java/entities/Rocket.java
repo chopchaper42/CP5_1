@@ -12,7 +12,7 @@ public class Rocket {
     private int rocketId;
     @Id
     @ManyToOne
-    @Column(name = "company")
+    @JoinColumn(name = "company")
     private AerospaceCompany company;
     @Basic
     @Column(name = "serial_number")

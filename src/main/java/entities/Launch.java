@@ -12,15 +12,15 @@ import java.util.Calendar;
 public class Launch {
     @Id
     @ManyToOne
-    @Column(name = "astronaut")
+    @JoinColumn(name = "astronaut")
     private Astronaut astronaut;
     @Id
     @ManyToOne
-    @Column(name = "company")
+    @JoinColumn(name = "company")
     private AerospaceCompany company;
     @Id
     @ManyToOne
-    @Column(name = "rocket")
+    @JoinColumn(name = "rocket")
     private Rocket rocket;
     @Id
     @Column(name = "date")

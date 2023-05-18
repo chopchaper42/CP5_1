@@ -2,7 +2,6 @@ import entities.AerospaceCompany;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.TypedQuery;
-import org.hibernate.Transaction;
 
 import java.util.List;
 

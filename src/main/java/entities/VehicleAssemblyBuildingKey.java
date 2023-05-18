@@ -1,32 +1,31 @@
 package entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.Objects;
 
+@Embeddable
 public class VehicleAssemblyBuildingKey implements Serializable {
-    @Column(name = "center")
-    @Id
-    private SpaceCenter center;
-    @Column(name = "number")
-    @Id
+//    @JoinColumn(name = "center")
+//    @ManyToOne
+    private String centerName;
+//    @Column(name = "number")
+//    @Id
     private int number;
 
     protected VehicleAssemblyBuildingKey() {}
-    public VehicleAssemblyBuildingKey(SpaceCenter center, int number) {
-        this.center = center;
+    public VehicleAssemblyBuildingKey(String center, int number) {
+        this.centerName = center;
         this.number = number;
     }
 
-    public SpaceCenter getCenter() {
-        return center;
+    public String getCenterName() {
+        return centerName;
     }
 
-    public void setCenter(SpaceCenter center) {
-        this.center = center;
+    public void setCenterName(String centerName) {
+        this.centerName = centerName;
     }
 
     public int getNumber() {
@@ -44,7 +43,7 @@ public class VehicleAssemblyBuildingKey implements Serializable {
 
         VehicleAssemblyBuildingKey that = (VehicleAssemblyBuildingKey) o;
 
-        if (center != that.center) return false;
+        if (!Objects.equals(centerName, that.centerName)) return false;
         if (number != that.number) return false;
 
         return true;
@@ -52,7 +51,7 @@ public class VehicleAssemblyBuildingKey implements Serializable {
 
     @Override
     public int hashCode() {
-        int result = center.hashCode();
+        int result = centerName.hashCode();
         result = 31 * result + number;
         return result;
     }

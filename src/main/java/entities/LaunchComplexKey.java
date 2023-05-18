@@ -1,14 +1,12 @@
 package entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.io.Serializable;
 
 public class LaunchComplexKey implements Serializable {
-    @Column(name = "center")
+    @JoinColumn(name = "center")
+    @ManyToOne
     @Id
     private SpaceCenter center;
     @Column(name = "number")

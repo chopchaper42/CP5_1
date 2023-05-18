@@ -9,11 +9,7 @@ public class AerospaceCompany {
     @Id
     @Column(name = "company_id")
     private int companyId;
-    @Basic
-    @Column(name = "name")
     private String name;
-    @Basic
-    @Column(name = "owner")
     private String owner;
 
     protected AerospaceCompany() {}

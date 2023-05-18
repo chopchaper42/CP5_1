@@ -8,8 +8,8 @@ import java.io.Serializable;
 @Table(name = "employee", schema = "cp3", catalog = "vorongri")
 public class Employee extends Person implements Serializable {
     @Id
+    @OneToOne
     @PrimaryKeyJoinColumn(name = "person")
-//    @Column(name = "person")
     private Person person;
     @Basic
     @Column(name = "position")

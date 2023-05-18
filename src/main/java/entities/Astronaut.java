@@ -2,14 +2,13 @@ package entities;
 
 import jakarta.persistence.*;
 
-import java.io.Serializable;
-
 
 @Entity
 @Table(name = "astronaut", schema = "cp3", catalog = "vorongri")
-public class Astronaut extends Person implements Serializable {
+public class Astronaut extends Person {
     @Id
     @OneToOne
+    @JoinColumn(name = "person")
     private Person person;
     @Basic(optional = false)
     @Column(name = "rank")
