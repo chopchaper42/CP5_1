@@ -3,37 +3,32 @@ package entities;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 @Embeddable
 public class VehicleAssemblyBuildingKey implements Serializable {
-//    @JoinColumn(name = "center")
-//    @ManyToOne
-    private String centerName;
-//    @Column(name = "number")
-//    @Id
+    private SpaceCenter center;
     private int number;
 
     protected VehicleAssemblyBuildingKey() {}
-    public VehicleAssemblyBuildingKey(String center, int number) {
-        this.centerName = center;
+    public VehicleAssemblyBuildingKey(SpaceCenter center, int number) {
+        this.center = center;
         this.number = number;
     }
 
-    public String getCenterName() {
-        return centerName;
-    }
-
-    public void setCenterName(String centerName) {
-        this.centerName = centerName;
-    }
-
-    public int getNumber() {
-        return number;
+    public void setCenter(SpaceCenter center) {
+        this.center = center;
     }
 
     public void setNumber(int number) {
         this.number = number;
+    }
+
+    public SpaceCenter getCenter() {
+        return center;
+    }
+
+    public int getNumber() {
+        return number;
     }
 
     @Override
@@ -43,7 +38,7 @@ public class VehicleAssemblyBuildingKey implements Serializable {
 
         VehicleAssemblyBuildingKey that = (VehicleAssemblyBuildingKey) o;
 
-        if (!Objects.equals(centerName, that.centerName)) return false;
+        if (center != that.center) return false;
         if (number != that.number) return false;
 
         return true;
@@ -51,7 +46,7 @@ public class VehicleAssemblyBuildingKey implements Serializable {
 
     @Override
     public int hashCode() {
-        int result = centerName.hashCode();
+        int result = center.hashCode();
         result = 31 * result + number;
         return result;
     }

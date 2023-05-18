@@ -7,26 +7,31 @@ import jakarta.persistence.*;
 //@IdClass(VehicleAssemblyBuildingKey.class)
 public class VehicleAssemblyBuilding {
     /*@Id
+    @Basic
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "building_id")
+    private Long buildingId;*/
+    /*@Id
     @ManyToOne
     @JoinColumn(name = "center")
     private SpaceCenter center;
-    @Id
-    @Column(name = "number")
+    @Basic
     private int number;*/
-    @EmbeddedId
+    @Id
     private VehicleAssemblyBuildingKey key;
-
     protected VehicleAssemblyBuilding() {}
     public VehicleAssemblyBuilding(VehicleAssemblyBuildingKey key) {
+        /*this.center = key.getCenter();
+        this.number = key.getNumber();*/
         this.key = key;
     }
 
-    public String getCenterName() {
-        return key.getCenterName();
+    public SpaceCenter getCenter() {
+        return key.getCenter();
     }
 
-    public void setCenter(String center) {
-        this.key.setCenterName(center);
+    public void setCenter(SpaceCenter center) {
+        this.key.setCenter(center);
     }
 
     public int getNumber() {
@@ -44,7 +49,7 @@ public class VehicleAssemblyBuilding {
 
         VehicleAssemblyBuilding that = (VehicleAssemblyBuilding) o;
 
-        if (!key.getCenterName().equals(that.getCenterName())) return false;
+        if (key.getCenter() != that.getCenter()) return false;
         if (key.getNumber() != that.getNumber()) return false;
 
         return true;
@@ -52,7 +57,7 @@ public class VehicleAssemblyBuilding {
 
     @Override
     public int hashCode() {
-        int result = key.getCenterName().hashCode();
+        int result = key.getCenter().hashCode();
         result = 31 * result + key.getNumber();
         return result;
     }
