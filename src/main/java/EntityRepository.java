@@ -1,7 +1,4 @@
-import entities.AerospaceCompany;
-import entities.Person;
-import entities.SpaceCenter;
-import entities.VehicleAssemblyBuilding;
+import entities.*;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.TypedQuery;
@@ -35,7 +32,7 @@ public class EntityRepository {
                         .executeUpdate();*/
         manager.persist(person);
         transaction.commit();
-        System.out.println("Inserted");
+        System.out.println("-*-*-*-*-*- Successfully persisted -*-*-*-*-*-");
 //        TypedQuery<Employee> query = manager.createQuery("SELECT e FROM Employee E WHERE E.")
     }
 
@@ -43,6 +40,7 @@ public class EntityRepository {
         transaction.begin();
         manager.merge(center);
         transaction.commit();
+        System.out.println("-*-*-*-*-*- Successfully updated -*-*-*-*-*-");
     }
 
     public void deleteVAB(VehicleAssemblyBuilding vab) {
@@ -50,5 +48,13 @@ public class EntityRepository {
         vab = manager.merge(vab);
         manager.remove(vab);
         transaction.commit();
+        System.out.println("-*-*-*-*-*- Successfully deleted -*-*-*-*-*-");
+    }
+
+    public void createLaunch(Launch launch) {
+        transaction.begin();
+        manager.persist(launch);
+        transaction.commit();
+        System.out.println("-*-*-*-*-*- Successfully persisted -*-*-*-*-*-");
     }
 }

@@ -11,9 +11,8 @@ public class Rocket {
     @Column(name = "rocket_id")
     private int rocketId;
     @Id
-    @ManyToOne
     @JoinColumn(name = "company")
-    private AerospaceCompany company;
+    private int company;
     @Basic
     @Column(name = "serial_number")
     private String serialNumber;
@@ -40,11 +39,11 @@ public class Rocket {
         this.rocketId = rocketId;
     }
 
-    public AerospaceCompany getCompany() {
+    public int getCompany() {
         return company;
     }
 
-    public void setCompany(AerospaceCompany company) {
+    public void setCompany(int company) {
         this.company = company;
     }
 
@@ -91,7 +90,7 @@ public class Rocket {
     @Override
     public int hashCode() {
         int result = rocketId;
-        result = 31 * result + company.hashCode();
+        result = 31 * result + company;
         result = 31 * result + (serialNumber != null ? serialNumber.hashCode() : 0);
         result = 31 * result + (type != null ? type.hashCode() : 0);
         result = 31 * result + testId;

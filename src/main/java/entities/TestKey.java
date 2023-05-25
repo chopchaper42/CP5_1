@@ -9,16 +9,16 @@ import jakarta.persistence.OneToOne;
 import java.io.Serializable;
 
 public class TestKey implements Serializable {
-    @Id
+    /*@Id
     @OneToOne
     @JoinColumn(name = "rocket")
-    private Rocket rocket;
-    @Id
+    private Rocket rocket;*/
+    /*@Id
     @ManyToOne
     @JoinColumn(name = "company")
-    private AerospaceCompany company;
+    private AerospaceCompany company;*/
 
-    protected TestKey() {}
+    /*protected TestKey() {}
     public TestKey(Rocket rocket, AerospaceCompany company) {
         this.rocket = rocket;
         this.company = company;
@@ -56,5 +56,5 @@ public class TestKey implements Serializable {
         int result = rocket != null ? rocket.hashCode() : 0;
         result = 31 * result + (company != null ? company.hashCode() : 0);
         return result;
-    }
+    }*/
 }

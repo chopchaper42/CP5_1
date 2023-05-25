@@ -6,17 +6,17 @@ import java.io.Serializable;
 
 public class RocketKey implements Serializable {
     private int rocketId;
-    private AerospaceCompany company;
+    private int company;
 
     protected RocketKey() {}
-    public RocketKey(AerospaceCompany company) {
+    public RocketKey(int company) {
         this.company = company;
     }
-    public AerospaceCompany getCompany() {
+    public int getCompany() {
         return company;
     }
 
-    public void setCompany(AerospaceCompany company) {
+    public void setCompany(int company) {
         this.company = company;
     }
 
@@ -36,7 +36,7 @@ public class RocketKey implements Serializable {
     @Override
     public int hashCode() {
         int result = rocketId;
-        result = 31 * result + company.hashCode();
+        result = 31 * result + company;
         return result;
     }
 }
