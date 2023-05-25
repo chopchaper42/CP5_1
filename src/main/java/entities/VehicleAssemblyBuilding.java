@@ -1,12 +1,5 @@
 package entities;
-
-import jakarta.persistence.*;
-
-@Entity
-@Table(name = "vehicle_assembly_building", schema = "cp3", catalog = "vorongri")
-//@IdClass(VehicleAssemblyBuildingKey.class)
-public class VehicleAssemblyBuilding {
-    /*@Id
+/*@Id
     @Basic
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "building_id")
@@ -17,30 +10,42 @@ public class VehicleAssemblyBuilding {
     private SpaceCenter center;
     @Basic
     private int number;*/
-    @Id
-    private VehicleAssemblyBuildingKey key;
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "vehicle_assembly_building", schema = "cp3", catalog = "vorongri")
+@IdClass(VehicleAssemblyBuildingKey.class)
+public class VehicleAssemblyBuilding {
+    /*@Id
+    @ManyToOne
+    @JoinColumn(name = "center")
+    private SpaceCenter center;*/
+
+    @Id private int number;
+
     protected VehicleAssemblyBuilding() {}
     public VehicleAssemblyBuilding(VehicleAssemblyBuildingKey key) {
         /*this.center = key.getCenter();
         this.number = key.getNumber();*/
-        this.key = key;
+//        this.center = key.getCenter();
+        this.number = key.getNumber();
     }
 
-    public SpaceCenter getCenter() {
-        return key.getCenter();
-    }
+//    public SpaceCenter getCenter() {
+//        return center;
+//    }
 
-    public void setCenter(SpaceCenter center) {
-        this.key.setCenter(center);
-    }
+//    public void setCenter(SpaceCenter center) {
+//        this.key.setCenter(center);
+//    }
 
     public int getNumber() {
-        return key.getNumber();
+        return number;
     }
 
-    public void setNumber(int number) {
-        this.key.setNumber(number);
-    }
+//    public void setNumber(int number) {
+//        this.key.setNumber(number);
+//    }
 
     @Override
     public boolean equals(Object o) {
@@ -49,16 +54,16 @@ public class VehicleAssemblyBuilding {
 
         VehicleAssemblyBuilding that = (VehicleAssemblyBuilding) o;
 
-        if (key.getCenter() != that.getCenter()) return false;
-        if (key.getNumber() != that.getNumber()) return false;
+//        if (center != that.getCenter()) return false;
+        if (number != that.getNumber()) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = key.getCenter().hashCode();
-        result = 31 * result + key.getNumber();
+//        int result = center.hashCode();
+        int result = 31 * number;
         return result;
     }
 }

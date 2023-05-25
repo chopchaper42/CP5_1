@@ -14,15 +14,20 @@ public class Employee extends Person implements Serializable {
     @Basic
     @Column(name = "position")
     private String position;
-    @ManyToOne
-    @JoinColumn(name = "supervisor")
-    private Employee supervisor;
+//    @ManyToOne
+//    @JoinColumn(name = "supervisor")
+    /*@JoinTable(name = "employee", joinColumns = {
+            @JoinColumn(name = "person"),
+            @JoinColumn(name = "position"),
+            @JoinColumn(name = "supervisor")
+    })
+    private Employee supervisor;*/
 
     protected Employee() {}
     public Employee(Person person, String position, Employee supervisor) {
         this.person = person;
         this.position = position;
-        this.supervisor = supervisor;
+//        this.supervisor = supervisor;
     }
 
     public Person getPerson() {
@@ -37,11 +42,11 @@ public class Employee extends Person implements Serializable {
         this.position = position;
     }
 
-    public Employee getSupervisor() {
+    /*public Employee getSupervisor() {
         return supervisor;
     }
 
     public void setSupervisor(Employee supervisor) {
         this.supervisor = supervisor;
-    }
+    }*/
 }
