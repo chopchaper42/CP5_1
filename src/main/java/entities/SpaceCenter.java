@@ -21,6 +21,11 @@ public class SpaceCenter {
         this.name = name;
         this.address = address;
     }
+    public SpaceCenter(int id, String name, String address) {
+        this.centerId = id;
+        this.name = name;
+        this.address = address;
+    }
 
     public String getName() {
         return name;

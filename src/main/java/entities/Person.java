@@ -8,7 +8,7 @@ import java.io.Serializable;
 @Table(name = "person", schema = "cp3", catalog = "vorongri")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Person {
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "person_id")
     private int personId;
