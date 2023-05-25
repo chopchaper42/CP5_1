@@ -6,24 +6,15 @@ import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Time;
 
+@Embeddable
 public class LaunchKey implements Serializable {
-    @JoinColumn(name = "astronaut")
     @ManyToOne
-    @Id
     private Astronaut astronaut;
-    @JoinColumn(name = "company")
     @ManyToOne
-    @Id
     private AerospaceCompany company;
-    @JoinColumn(name = "rocket")
     @ManyToOne
-    @Id
     private Rocket rocket;
-    @Column(name = "date")
-    @Id
     private String date;
-    @Column(name = "time")
-    @Id
     private String time;
 
     public LaunchKey(Astronaut astronaut, AerospaceCompany company, Rocket rocket, String date, String time) {
@@ -33,6 +24,8 @@ public class LaunchKey implements Serializable {
         this.date = date;
         this.time = time;
     }
+
+    protected LaunchKey() {}
 
     public Astronaut getAstronaut() {
         return astronaut;

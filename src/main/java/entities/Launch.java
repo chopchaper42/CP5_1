@@ -8,74 +8,54 @@ import java.util.Calendar;
 
 @Entity
 @Table(name = "launch", schema = "cp3", catalog = "vorongri")
-@IdClass(LaunchKey.class)
+//@IdClass(LaunchKey.class)
 public class Launch {
     @Id
-    @ManyToOne
-    @JoinColumn(name = "astronaut")
-    private Astronaut astronaut;
-    @Id
-    @ManyToOne
-    @JoinColumn(name = "company")
-    private AerospaceCompany company;
-    @Id
-    @ManyToOne
-    @JoinColumn(name = "rocket")
-    private Rocket rocket;
-    @Id
-    @Column(name = "date")
-    private String date;
-    @Id
-    @Column(name = "time")
-    private String time;
+    private LaunchKey key;
 
     protected Launch() {}
     public Launch(LaunchKey key) {
-        astronaut = key.getAstronaut();
-        company = key.getCompany();
-        rocket = key.getRocket();
-        date = key.getDate();
-        time = key.getTime();
+        this.key = key;
     }
 
     public Astronaut getAstronaut() {
-        return astronaut;
+        return key.getAstronaut();
     }
 
     public void setAstronaut(Astronaut astronaut) {
-        this.astronaut = astronaut;
+        key.setAstronaut(astronaut);
     }
 
     public AerospaceCompany getCompany() {
-        return company;
+        return key.getCompany();
     }
 
     public void setCompany(AerospaceCompany company) {
-        this.company = company;
+        key.setCompany(company);
     }
 
     public Rocket getRocket() {
-        return rocket;
+        return key.getRocket();
     }
 
     public void setRocket(Rocket rocket) {
-        this.rocket = rocket;
+        key.setRocket(rocket);
     }
 
     public String getDate() {
-        return date;
+        return key.getDate();
     }
 
     public void setDate(String date) {
-        this.date = date;
+        key.setDate(date);
     }
 
     public String getTime() {
-        return time;
+        return key.getTime();
     }
 
     public void setTime(String time) {
-        this.time = time;
+        key.setTime(time);
     }
 
     @Override
@@ -85,22 +65,22 @@ public class Launch {
 
         Launch that = (Launch) o;
 
-        if (astronaut != that.astronaut) return false;
-        if (company != that.company) return false;
-        if (rocket != that.rocket) return false;
-        if (date != null ? !date.equals(that.date) : that.date != null) return false;
-        if (time != null ? !time.equals(that.time) : that.time != null) return false;
+        if (key.getAstronaut() != that.getAstronaut()) return false;
+        if (key.getCompany() != that.getCompany()) return false;
+        if (key.getRocket() != that.getRocket()) return false;
+        if (key.getDate() != null ? !key.getDate().equals(that.getDate()) : that.getDate() != null) return false;
+        if (key.getTime() != null ? !key.getTime().equals(that.getTime()) : that.getTime() != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = astronaut.hashCode();
-        result = 31 * result + company.hashCode();
-        result = 31 * result + rocket.hashCode();
-        result = 31 * result + (date != null ? date.hashCode() : 0);
-        result = 31 * result + (time != null ? time.hashCode() : 0);
+        int result = getAstronaut().hashCode();
+        result = 31 * result + getCompany().hashCode();
+        result = 31 * result + getRocket().hashCode();
+        result = 31 * result + (getDate() != null ? getDate().hashCode() : 0);
+        result = 31 * result + (getTime() != null ? getTime().hashCode() : 0);
         return result;
     }
 }

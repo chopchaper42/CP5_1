@@ -3,20 +3,27 @@ package entities;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "employee", schema = "cp3", catalog = "vorongri")
-public class Employee extends Person implements Serializable {
-    @Id
+public class Employee extends Person{
+//    @Id
     @OneToOne
-    @PrimaryKeyJoinColumn(name = "person")
+    @JoinColumn(name = "person", referencedColumnName = "person_id")
     private Person person;
     @Basic
     @Column(name = "position")
     private String position;
     @ManyToOne
-    @JoinColumn(name = "supervisor")
+    /*@JoinColumns({
+            @JoinColumn(name = "person"),
+            @JoinColumn(name = "position"),
+            @JoinColumn(name = "supervisor")})*/
     private Employee supervisor;
+
+    @Transient
+    private List<Employee> employees;
 
     protected Employee() {}
     public Employee(Person person, String position, Employee supervisor) {
@@ -43,5 +50,17 @@ public class Employee extends Person implements Serializable {
 
     public void setSupervisor(Employee supervisor) {
         this.supervisor = supervisor;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
+    }
+
+    public List<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
     }
 }

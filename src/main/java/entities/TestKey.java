@@ -1,21 +1,18 @@
 package entities;
 
 
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 
 import java.io.Serializable;
 
+@Embeddable
 public class TestKey implements Serializable {
-    @Id
-    @OneToOne
-    @JoinColumn(name = "rocket")
+    /*@OneToOne
+    @Column(name = "rocket")
     private Rocket rocket;
-    @Id
     @ManyToOne
-    @JoinColumn(name = "company")
+    @Column(name = "company")
+//    @JoinColumn(name = "company", referencedColumnName = "company")
     private AerospaceCompany company;
 
     protected TestKey() {}
@@ -56,5 +53,5 @@ public class TestKey implements Serializable {
         int result = rocket != null ? rocket.hashCode() : 0;
         result = 31 * result + (company != null ? company.hashCode() : 0);
         return result;
-    }
+    }*/
 }

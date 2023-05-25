@@ -4,15 +4,15 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "test", schema = "cp3", catalog = "vorongri")
-@IdClass(TestKey.class)
+@IdClass(TestId.class)
 public class Test {
+    /*@EmbeddedId
+    private TestKey key;*/
     @Id
     @OneToOne
-    @JoinColumn(name = "rocket")
-    private Rocket rocket;
+    private RocketKey rocket;
     @Id
-    @OneToOne
-    @JoinColumn(name = "company")
+    @ManyToOne
     private AerospaceCompany company;
     @Basic
     @Column(name = "description")
@@ -21,16 +21,15 @@ public class Test {
     @Column(name = "name")
     private String name;
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
     @Column(name = "test_id")
     private int testId;
 
     protected Test() {}
-    public Test(String name, String description, Rocket rocket, AerospaceCompany company) {
+    public Test(String name, String description, TestId key) {
         this.name = name;
         this.description = description;
-        this.rocket = rocket;
-        this.company = company;
+        this.rocket = key.getRocket();
+        this.company = key.getCompany();
     }
 
     public Rocket getRocket() {
@@ -80,8 +79,8 @@ public class Test {
 
         Test that = (Test) o;
 
-        if (rocket != that.rocket) return false;
-        if (company != that.company) return false;
+        if (rocket != that.getRocket()) return false;
+        if (company != that.getCompany()) return false;
         if (testId != that.testId) return false;
         if (description != null ? !description.equals(that.description) : that.description != null) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;

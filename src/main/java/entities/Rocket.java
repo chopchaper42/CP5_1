@@ -4,16 +4,10 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "rocket", schema = "cp3", catalog = "vorongri")
-@IdClass(RocketKey.class)
+//@IdClass(RocketKey.class)
 public class Rocket {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "rocket_id")
-    private int rocketId;
-    @Id
-    @ManyToOne
-    @JoinColumn(name = "company")
-    private AerospaceCompany company;
+    private RocketKey key;
     @Basic
     @Column(name = "serial_number")
     private String serialNumber;
@@ -26,26 +20,20 @@ public class Rocket {
 
     protected Rocket() {}
     public Rocket(RocketKey key, String serialNumber, String type, int testId) {
-        company = key.getCompany();
+        this.key = key;
         this.serialNumber = serialNumber;
         this.type  = type;
         this.testId = testId;
     }
 
     public int getRocketId() {
-        return rocketId;
-    }
-
-    public void setRocketId(int rocketId) {
-        this.rocketId = rocketId;
+//        return rocketId;
+        return key.getRocketId();
     }
 
     public AerospaceCompany getCompany() {
-        return company;
-    }
-
-    public void setCompany(AerospaceCompany company) {
-        this.company = company;
+//        return company;
+        return key.getCompany();
     }
 
     public String getSerialNumber() {
@@ -79,8 +67,8 @@ public class Rocket {
 
         Rocket that = (Rocket) o;
 
-        if (rocketId != that.rocketId) return false;
-        if (company != that.company) return false;
+        if (key.getRocketId() != that.getRocketId()) return false;
+        if (key.getCompany() != that.getCompany()) return false;
         if (serialNumber != null ? !serialNumber.equals(that.serialNumber) : that.serialNumber != null) return false;
         if (type != null ? !type.equals(that.type) : that.type != null) return false;
         if ( !(testId == that.testId) ) return false;
@@ -90,11 +78,20 @@ public class Rocket {
 
     @Override
     public int hashCode() {
-        int result = rocketId;
-        result = 31 * result + company.hashCode();
+        int result = key.getRocketId();
+        result = 31 * result + key.getCompany().hashCode();
         result = 31 * result + (serialNumber != null ? serialNumber.hashCode() : 0);
         result = 31 * result + (type != null ? type.hashCode() : 0);
         result = 31 * result + testId;
         return result;
     }
 }
+
+/*@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "rocket_id")
+    private int rocketId;
+    @Id
+    @ManyToOne
+    @JoinColumn(name = "company")
+    private AerospaceCompany company;*/

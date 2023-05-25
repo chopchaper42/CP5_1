@@ -4,13 +4,14 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 
+@Embeddable
 public class LaunchComplexKey implements Serializable {
-    @JoinColumn(name = "center")
+//    @JoinColumn(name = "center")
     @ManyToOne
-    @Id
+//    @Id
     private SpaceCenter center;
-    @Column(name = "number")
-    @Id
+//    @Column(name = "number")
+//    @Id
     private int number;
 
     protected LaunchComplexKey() {}

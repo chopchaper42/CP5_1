@@ -4,39 +4,41 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "launch_complex", schema = "cp3", catalog = "vorongri")
-@IdClass(LaunchComplexKey.class)
+//@IdClass(LaunchComplexKey.class)
 public class LaunchComplex {
-    @Id
+    /*@Id
     @ManyToOne
     @JoinColumn(name = "center")
     private SpaceCenter center;
     @Id
     @Column(name = "number")
-    private int number;
+    private int number;*/
+    @Id
+    private LaunchComplexKey key;
     @Basic
     @Column(name = "type")
     private String type;
 
     protected LaunchComplex() {}
     public LaunchComplex(LaunchComplexKey key, String type) {
-        center = key.getCenter();
+        this.key = key;
         this.type = type;
     }
 
     public SpaceCenter getCenter() {
-        return center;
+        return key.getCenter();
     }
 
     public void setCenter(SpaceCenter center) {
-        this.center = center;
+        key.setCenter(center);
     }
 
     public int getNumber() {
-        return number;
+        return key.getNumber();
     }
 
     public void setNumber(int number) {
-        this.number = number;
+        key.setNumber(number);
     }
 
     public String getType() {
@@ -54,8 +56,8 @@ public class LaunchComplex {
 
         LaunchComplex that = (LaunchComplex) o;
 
-        if (center != that.center) return false;
-        if (number != that.number) return false;
+        if (key.getCenter() != that.getCenter()) return false;
+        if (key.getNumber() != that.getNumber()) return false;
         if (type != null ? !type.equals(that.type) : that.type != null) return false;
 
         return true;
@@ -63,8 +65,8 @@ public class LaunchComplex {
 
     @Override
     public int hashCode() {
-        int result = center.hashCode();
-        result = 31 * result + number;
+        int result = key.getCenter().hashCode();
+        result = 31 * result + key.getNumber();
         result = 31 * result + (type != null ? type.hashCode() : 0);
         return result;
     }

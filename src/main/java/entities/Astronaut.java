@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "astronaut", schema = "cp3", catalog = "vorongri")
 public class Astronaut extends Person {
-    @Id
+//    @Id
     @OneToOne
     @JoinColumn(name = "person")
     private Person person;

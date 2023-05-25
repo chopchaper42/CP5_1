@@ -6,6 +6,7 @@ import java.io.Serializable;
 
 @Embeddable
 public class VehicleAssemblyBuildingKey implements Serializable {
+    @ManyToOne
     private SpaceCenter center;
     private int number;
 
